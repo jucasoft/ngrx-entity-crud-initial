@@ -1,14 +1,17 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {RootStoreState} from '../../../root-store/';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-footer',
   template: `
     <footer class="footer">
-            <div class="float-left">
-              <small>&#160;footer&#160;</small>
-            </div>
+      <div class="float-left">
+        <small>&#160;footer&#160;</small> -
+        <span>production:{{production}}</span> -
+        <span>webServiceUri:{{webServiceUri}}</span>
+      </div>
     </footer>
   `,
   styles: [`
@@ -28,6 +31,8 @@ import {RootStoreState} from '../../../root-store/';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FooterComponent implements OnInit {
+  production = environment.production;
+  webServiceUri = environment.webServiceUri;
 
   constructor(private readonly store$: Store<RootStoreState.State>) {
   }
